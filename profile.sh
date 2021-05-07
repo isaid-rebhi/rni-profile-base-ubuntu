@@ -11,8 +11,8 @@ source /opt/bootstrap/functions
 
 
 # --- Add Packages
-ubuntu_bundles=""
-ubuntu_packages="kubeadm kubectl"
+ubuntu_bundles="openssh-server"
+ubuntu_packages="kubeadm"
 
 # --- List out any docker images you want pre-installed separated by spaces. ---
 pull_sysdockerimagelist=""
