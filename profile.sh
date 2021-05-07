@@ -33,7 +33,11 @@ run "Installing Extra Packages on Ubuntu ${param_ubuntuversion}" \
         export DEBIAN_FRONTEND=noninteractive && \
         apt install -y tasksel && \
         tasksel install ${ubuntu_bundles} && \
-        apt install -y ${ubuntu_packages}\"'" \
+        apt install -y apt-transport-https ca-certificates curl && \
+        curl -fsSLo /usr/share/keyrings/kubernetes-archive-keyring.gpg https://packages.cloud.google.com/apt/doc/apt-key.gpg && \
+        echo \"deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main\" | tee /etc/apt/sources.list.d/kubernetes.list && \
+        apt-get update && \
+        apt-get install -y kubelet kubeadm kubectl\"'" \
     ${PROVISION_LOG}
 
 # --- Pull any and load any system images ---
